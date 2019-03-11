@@ -1,5 +1,14 @@
 body {
   background-color: #dedede;
+  font-family: "Marvel", sans-serif;
+}
+
+.heading {
+  font-family: "Boogaloo", cursive;
+}
+
+.headings {
+  font-family: "Special Elite", cursive;
 }
 
 .main-cont {
