@@ -1,0 +1,17 @@
+body {
+  background-color: #dedede;
+}
+
+.main-cont {
+  background-color: #fff;
+}
+
+.cont2 {
+  background-color: #bbdefb;
+}
+
+.cont2-row1,
+.cont2-row2,
+.cont2-row3 {
+  background-color: #fff;
+}
