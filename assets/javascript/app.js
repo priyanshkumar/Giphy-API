@@ -7,7 +7,7 @@ $(document).ready(function() {
     for (var i = 0; i < animals.length; i++) {
       var a = $("<button>");
 
-      a.addClass("animal");
+      a.addClass("animal m-2 btn btn-small btn-primary");
 
       a.attr("data-name", animals[i]);
 
