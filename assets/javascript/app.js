@@ -17,6 +17,18 @@ $(document).ready(function() {
     }
   }
 
+  $(".add").on("click", function() {
+    event.preventDefault();
+
+    var userAnimal = $(".animalInput")
+      .val()
+      .trim();
+
+    animals.push(userAnimal);
+
+    renderButton();
+  });
+
   console.log("hiiiiii");
   renderButton();
 });
