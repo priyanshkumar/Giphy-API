@@ -24,9 +24,11 @@ $(document).ready(function() {
       .val()
       .trim();
 
-    animals.push(userAnimal);
+    if (userAnimal !== "") {
+      animals.push(userAnimal);
 
-    renderButton();
+      renderButton();
+    }
   });
 
   $(document).on("click", ".animal", displayAnimals);
@@ -56,7 +58,7 @@ $(document).ready(function() {
             "my-2 borders height p-2 d-flex flex-column align-items-center"
           );
 
-          var animalName = $("<h4>");
+          var animalName = $("<h4 class='text-center'>");
           animalName.text(response.data[i].title);
 
           var animalImage = $("<img class='my-2'>");
