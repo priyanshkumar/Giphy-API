@@ -24,3 +24,11 @@ body {
 .cont2-row3 {
   background-color: #fff;
 }
+
+.borders {
+  border: 1px solid #333333;
+}
+
+.height {
+  height: 20vh;
+}
