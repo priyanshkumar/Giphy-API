@@ -29,6 +29,27 @@ $(document).ready(function() {
     renderButton();
   });
 
-  console.log("hiiiiii");
+  $(document).on("click", ".animal", displayAnimals);
+
+  function displayAnimals() {
+    var animal = $(this).attr("data-name");
+
+    var queryURL =
+      "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" +
+      animal +
+      "&limit=12&rating=g";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  }
+
   renderButton();
 });
