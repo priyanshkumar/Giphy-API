@@ -29,6 +29,7 @@ $(document).ready(function() {
 
       renderButton();
     }
+    $(".animalInput").val("");
   });
 
   $(document).on("click", ".animal", displayAnimals);
@@ -51,32 +52,40 @@ $(document).ready(function() {
     })
       .then(function(response) {
         console.log(response);
-        $(".gifs").append(animalImage);
-        for (var i = 0; i < response.data.length; i++) {
-          var animalDiv = $("<div>");
-          animalDiv.addClass(
-            "my-2 borders height p-2 d-flex flex-column align-items-center"
-          );
-
-          var animalName = $("<h4 class='text-center'>");
-          animalName.text(response.data[i].title);
-
-          var animalImage = $("<img class='my-2'>");
-          animalImage.attr("src", response.data[i].images.downsized_medium);
-
-          var animalRating = $("<h6>");
-          animalRating.text("Rating: " + response.data[i].rating);
-
-          animalDiv.append(animalName, animalImage, animalRating);
-
-          if (i === 0 || i === 3 || i === 6 || i === 9) {
-            $(".gifs1").append(animalDiv);
+        if (response.data.length === 0) {
+          for (var i = 0; i < animals.length; i++) {
+            if (animal === animals[i]) {
+              animals.splice(i, 1);
+              renderButton();
+            }
           }
-          if (i === 1 || i === 4 || i === 7 || i === 10) {
-            $(".gifs2").append(animalDiv);
-          }
-          if (i === 2 || i === 5 || i === 8 || i === 11) {
-            $(".gifs3").append(animalDiv);
+        } else {
+          for (var i = 0; i < response.data.length; i++) {
+            var animalDiv = $("<div>");
+            animalDiv.addClass(
+              "my-2 borders height p-2 d-flex flex-column align-items-center"
+            );
+
+            var animalName = $("<h4 class='text-center'>");
+            animalName.text(response.data[i].title);
+
+            var animalImage = $("<img class='my-2'>");
+            animalImage.attr("src", response.data[i].images.downsized_medium);
+
+            var animalRating = $("<h6>");
+            animalRating.text("Rating: " + response.data[i].rating);
+
+            animalDiv.append(animalName, animalImage, animalRating);
+
+            if (i === 0 || i === 3 || i === 6 || i === 9) {
+              $(".gifs1").append(animalDiv);
+            }
+            if (i === 1 || i === 4 || i === 7 || i === 10) {
+              $(".gifs2").append(animalDiv);
+            }
+            if (i === 2 || i === 5 || i === 8 || i === 11) {
+              $(".gifs3").append(animalDiv);
+            }
           }
         }
       })
