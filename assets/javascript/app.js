@@ -69,7 +69,7 @@ $(document).ready(function() {
             var animalName = $("<h4 class='text-center'>");
             animalName.text(response.data[i].title);
 
-            var animalImage = $("<img width=300px height=300px class='my-2'>");
+            var animalImage = $("<img class='my-2 sizing'>");
             animalImage.attr(
               "src",
               response.data[i].images.downsized_medium.url
