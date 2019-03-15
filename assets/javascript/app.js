@@ -1,6 +1,8 @@
 $(document).ready(function() {
   var animals = ["cat", "dog", "snake", "lion", "tiger", "pengiun"];
 
+  var gifStill = false;
+
   function renderButton() {
     $(".buttons").empty();
 
@@ -61,19 +63,24 @@ $(document).ready(function() {
           }
         } else {
           for (var i = 0; i < response.data.length; i++) {
-            var animalDiv = $("<div>");
+            var animalDiv = $("<div class>");
+            animalDiv.attr("arrayNo:", i);
+            animalDiv.attr("q", animal);
+
             animalDiv.addClass(
-              "my-2 borders height p-2 d-flex flex-column align-items-center"
+              "my-2 gifClick borders height p-2 d-flex flex-column align-items-center"
             );
 
             var animalName = $("<h4 class='text-center'>");
             animalName.text(response.data[i].title);
 
-            var animalImage = $("<img class='my-2 sizing'>");
+            var animalImage = $("<img class='image my-2 sizing'>");
             animalImage.attr(
               "src",
-              response.data[i].images.downsized_medium.url
+              response.data[arrayNumber].images.downsized_medium.url
             );
+
+            gifStill = true;
 
             var animalRating = $("<h6>");
             animalRating.text("Rating: " + response.data[i].rating);
@@ -96,6 +103,29 @@ $(document).ready(function() {
         console.log(err);
       });
   }
+
+  $(document).on("click", ".gifClick", function() {
+    var arrayNumber = $(this).attr("arrayNo");
+    console.log(arrayNumber);
+    var animalName = $(this).attr("q");
+
+    var queryURL =
+      "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" +
+      animalName +
+      "&limit=12&accept=images";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      var an = $(".image");
+      if (gifStill === true) {
+        an.attr("src", response.data[arrayNumber].images.downsized_medium.url);
+      } else {
+        an.attr("src", response.data[arrayNumber].images["480w_still"].url);
+      }
+    });
+  });
 
   renderButton();
 });
